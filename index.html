@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <!-- 
+  Name: Josephine
+  Class: Web Dev
+  Teacher: Mr.Irimina
+  Date: Septmeber 21th 2023
+  -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script>
+    
+    function initialize() 
+    {
+      numberOutput = document.getElementById("numberout");
+      negativeButton = document.getElementById("negativebtn");
+      changeButton = document.getElementById("change"); 
+      numberLabel = document.getElementById("number");
+      
+      myNumber = 0;
+      negativeAllowed = false;
+      changeNum = 0;
+      moreTen = false;
+      
+      display();
+    }
+
+    function add() {
+      myNumber++;
+      display();
+      console.log("Used add: " + myNumber);
+      if (myNumber >= 10 && !moreTen) {
+         numberLabel.innerHTML = myNumber + " Wow, a large number"
+         moreTen = true;
+      } else if (myNumber >= 10 && moreTen) {
+        numberLabel.innerHTML = myNumber + " A large number again"  
+      } else if (myNumber < 10) {
+        numberLabel.innerHTML = myNumber
+      }
+      // Tried numberLabel.innerHTML -= " Wow, more than ten",
+      // results in label displayed as NaN
+      // numberLabel.innerHTML += " Wow, more than ten" keeps adding ten
+    }
+
+    function subtract() {
+      myNumber--; 
+      if (myNumber < 0 && !negativeAllowed) {
+        myNumber = 0;
+        console.log("Can not subtract anymore");
+      }
+          
+      display();
+      console.log("Used subtract: " + myNumber);
+      if (myNumber >= 10 && !moreTen) {
+         numberLabel.innerHTML = myNumber + " Wow, a large number"
+         moreTen = true;
+      } else if (myNumber >= 10 && moreTen) {
+        numberLabel.innerHTML = myNumber + " A large number again"  
+      } else if (myNumber < 10) {
+        numberLabel.innerHTML = myNumber
+      }
+    }
+
+    function toggleNegatives() {
+      negativeAllowed = !negativeAllowed;
+      display();   
+    }
+
+    function display() {
+      if(!negativeAllowed) {
+        negativeButton.innerHTML = "Neagtive are OFF";   
+      } else {
+        negativeButton.innerHTML = "Neagtive are ON";
+      }
+    }
+    
+    // Testing how buttons change text, had a problem with the name of function.
+    // Why didn't changeButton() work?
+    function switchButton() {
+      changeNum++;
+      if (changeNum == 0) {
+        changeButton.innerHTML = "Slide to the left";      
+      } else if (changeNum == 1) {
+        changeButton.innerHTML = "Slide to the right";      
+      } else if (changeNum == 2 || changeNum == 3)  {
+        changeButton.innerHTML = "Criss Cross";      
+      } else {
+        changeButton.innerHTML = "Cha Cha Real Smooth";
+        changeNum = -1;
+      }
+    }
+</script> 
+</head>
+
+<!-- initialize() loads when the page loads -->
+<body onload = initialize() >
+  <h1 id = "numberout" > </h1>
+  <hr />
+  <p id = "number">
+    0
+  </p>
+  
+  <button onclick = "add();"> Add </button>
+  <button onclick = "subtract();"> Subtract  </button>
+  <button onclick = "toggleNegatives();" id =  "negativebtn"> Negative are 
+  OFF </button>
+
+  <button id =  "change"> Slide to the left </button>
+  <button onclick = "switchButton();"> Change Button </button>
+  <!-- A button can change another button -->
+
+</body>
+
+</html>
+
